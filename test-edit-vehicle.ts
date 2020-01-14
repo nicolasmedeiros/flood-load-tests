@@ -1,4 +1,4 @@
-import { step, TestSettings, Until, By, Device } from '@flood/element'
+import { step, TestSettings, Until, By, Device, ENV } from '@flood/element'
 import * as assert from 'assert'
 
 export const settings: TestSettings = {
@@ -20,17 +20,14 @@ export const settings: TestSettings = {
 export default () => {
 
 	step('Bosssite: Login Screen', async browser => {
-
 		await browser.visit('https://loadtest.backlotcars.com/bosssite/login')
-
 		let pageTextVerify = By.visibleText("BacklotCars Login")
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
 	})
 
 	step('Bosssite: Proceed to Login', async browser => {
-
-    await browser.type(By.id('admin_user_email'), "XXX");
-    await browser.type(By.id('admin_user_password'), "YYY");
+    await browser.type(By.id('admin_user_email'), ENV.bosssite_user);
+    await browser.type(By.id('admin_user_password'), ENV.bosssite_pass);
 
     let element = await browser.findElement(By.nameAttr('commit'))
 		await element.click()
@@ -41,7 +38,6 @@ export default () => {
 	})
 
 	step('Bosssite: Go to vehcile listing', async browser => {
-
 		let lnkVehicle = By.id("vehicles")
 		await browser.wait(Until.elementIsVisible(lnkVehicle))
 		let element = await browser.findElement(lnkVehicle)
