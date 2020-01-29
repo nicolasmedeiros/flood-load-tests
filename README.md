@@ -9,6 +9,4 @@
 
 2. Update file `environment` with your information
 
-3. Run
-
-`element run test-edit-vehicle.ts`
+3. Run `element run test-edit-vehicle.ts`
